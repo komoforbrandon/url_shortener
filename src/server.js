@@ -5,7 +5,6 @@ import { db } from "./db.js";
 import { logger } from "./lib/logger.js";
 
 const app = createApp();
-
 const server = createServer(app);
 
 server.listen(config.PORT, () => {

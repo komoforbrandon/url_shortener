@@ -24,7 +24,6 @@ router.get("/links/:code/clicks", clickController.getClicks);
 
 router.get("/links/:code/clicks.csv", clickController.exportCSV);
 
-
 router.delete("/links/:code", linkController.deleteLink);
 
 export default router;
