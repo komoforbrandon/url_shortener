@@ -1,3 +1,7 @@
+DROP TABLE IF EXISTS clicks CASCADE;
+
+DROP TABLE IF EXISTS links CASCADE;
+
 CREATE TABLE
     IF NOT EXISTS links (
         id SERIAL PRIMARY KEY,
@@ -17,3 +21,8 @@ CREATE TABLE
         user_agent TEXT
     );
 
+CREATE INDEX IF NOT EXISTS idx_links_code ON links (code);
+
+CREATE INDEX IF NOT EXISTS idx_clicks_link_time ON clicks (link_id, clicked_at DESC);
+
+CREATE INDEX IF NOT EXISTS idx_links_expiry ON links (expires_at);
