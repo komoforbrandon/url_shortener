@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 
 const router = Router();
 const spec = JSON.parse(
-  readFileSync(new URL("../../openapi.json", import.meta.url), "utf8"),
+  readFileSync(new URL("../../docs/openapi.json", import.meta.url), "utf8"),
 );
 const swaggerHandler = swaggerUi.setup(spec);
 
