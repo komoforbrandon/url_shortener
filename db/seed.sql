@@ -29,7 +29,7 @@ VALUES
         'https://chat.openai.com',
         CURRENT_TIMESTAMP - INTERVAL '2 days',
         NULL,
-        8
+        7
     ),
     (
         'postgres',

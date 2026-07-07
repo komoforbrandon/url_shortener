@@ -1,9 +1,5 @@
-DROP TABLE IF EXISTS clicks CASCADE;
-
-DROP TABLE IF EXISTS links CASCADE;
-
 CREATE TABLE
-    links (
+    IF NOT EXISTS links (
         id SERIAL PRIMARY KEY,
         code VARCHAR(32) UNIQUE NOT NULL,
         target_url TEXT NOT NULL,
@@ -13,7 +9,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    clicks (
+    IF NOT EXISTS clicks (
         id SERIAL PRIMARY KEY,
         link_id INTEGER NOT NULL REFERENCES links (id) ON DELETE CASCADE,
         clicked_at TIMESTAMPTZ NOT NULL DEFAULT now (),
