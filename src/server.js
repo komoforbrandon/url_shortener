@@ -7,7 +7,9 @@ import { logger } from "./lib/logger.js";
 const app = createApp();
 const server = createServer(app);
 
-server.listen(config.PORT, () => {
+const PORT = config.PORT || 3000;
+
+server.listen(PORT, () => {
   logger.info(
     `🔗 url_shortener api listening on http://localhost:${config.PORT}`,
   );
