@@ -1,4 +1,27 @@
-import express from
+import { createServer } from "node:http";
+import { createApp } from "./app.js";
+import { config } from "./config.js";
+import { db } from "./db.js";
+import { logger } from "./lib/logger.js";
 
-const PORT = process.env.PORT || 3000
+const app = createApp();
 
+const server = createServer(app);
+
+server.listen(config.PORT, () => {
+  logger.info(
+    `🔗 url_shortener api listening on http://localhost:${config.PORT}`,
+  );
+  logger.info(`Docs: http://localhost:${config.PORT}/docs`);
+  logger.info(`Health: http://localhost:${config.PORT}/health`);
+});
+
+async function shutdown(signal) {
+  logger.info(`${signal} reveived — shutting down gracefully...`);
+  server.close();
+  await db.end();
+  process.exit(0);
+}
+
+process.on("SIGINT", () => shutdown("SIGINT"));
+process.on("SIGTERM", () => shutdown("SIGTERM"));

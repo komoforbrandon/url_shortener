@@ -9,6 +9,6 @@ await db.query('DROP TABLE IF EXISTS clicks, links CASCADE')
 await db.query(schema)
 await db.query(seed)
 
-console.log('Database reset (dropped, recreated, and seeded).')
+console.log('✅ Database reset (dropped, recreated, and seeded).')
 
 await db.end()
