@@ -82,3 +82,4 @@ export async function recordClick({ linkId, referrer, userAgent }) {
     client.release();
   }
 }
+
