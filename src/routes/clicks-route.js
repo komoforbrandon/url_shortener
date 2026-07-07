@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     timestamp: new Date().toISOString(),
     message: "Welcome to URL Shortener API. For more details visit /docs",
   })
-})
+});
 
 router.get("/health", (req, res) => {
   res.status(200).json({

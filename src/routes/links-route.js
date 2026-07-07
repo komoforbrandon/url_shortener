@@ -4,6 +4,14 @@ import * as clickController from "../middleware/click-controller.js";
 
 const router = Router();
 
+router.get("/", (_req, res) => {
+    res.status(200).json({
+        status: "ok",
+        timestamp: new Date().toISOString(),
+        message: "Welcome to URL Shortener API. For more details visit /docs",
+    })
+});
+
 router.get("/health", (_req, res) => {
   res.status(200).json({ status: "ok" });
 });
