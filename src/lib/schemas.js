@@ -13,9 +13,9 @@ const httpUrlSchema = z
 export const codeSchema = z
   .string()
   .trim()
-  .regex(/^[A-Za-z0-9_-]{3,32}$/, {
+  .regex(/^[A-Za-z0-9_-]{3,16}$/, {
     message:
-      "code must be 3-32 characters of letters, numbers, underscores, or dashes",
+      "code must be 3-16 characters of letters, numbers, underscores, or dashes",
   });
 
 export const createLinkSchema = z

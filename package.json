@@ -8,6 +8,7 @@
   "main": "./src/server.js",
   "scripts": {
     "start": "node --env-file=.env src/server.js",
+    "lint": "eslint .",
     "dev": "node --env-file=.env --watch src/server.js",
     "db:migrate": "node --env-file=.env scripts/migrate.js",
     "db:seed": "node --env-file=.env scripts/seed.js",
@@ -32,7 +33,6 @@
     "express-rate-limit": "^8.5.2",
     "helmet": "^8.2.0",
     "http-errors": "^2.0.1",
-    "jsonwebtoken": "^9.0.3",
     "pg": "^8.22.0",
     "pg-query-stream": "^4.16.0",
     "pino": "^10.3.1",
@@ -41,6 +41,9 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.7.0",
+    "globals": "^17.7.0",
     "pino-pretty": "^13.1.3"
   }
 }

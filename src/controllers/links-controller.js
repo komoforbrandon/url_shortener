@@ -2,7 +2,6 @@ import createError from "http-errors";
 import { parse } from "../lib/validate.js";
 import { createLinkSchema, codeParamSchema } from "../lib/schemas.js";
 import * as linkModel from "../models/links.js";
-import * as clickModel from "../models/clicks.js";
 
 export async function createLink(req, res, next) {
   try {
@@ -34,7 +33,7 @@ export async function redirectToTarget(req, res, next) {
       return;
     }
 
-    const click = await linkModel.recordClick({
+    await linkModel.recordClick({
       linkId: link.id,
       referrer: req.get("referer") ?? null,
       userAgent: req.get("user-agent") ?? null,

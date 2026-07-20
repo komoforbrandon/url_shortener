@@ -18,9 +18,6 @@ CREATE TABLE
     );
 
 CREATE INDEX 
-    IF NOT EXISTS idx_links_code ON links (code);
-
-CREATE INDEX 
     IF NOT EXISTS idx_clicks_link_time ON clicks (link_id, clicked_at DESC);
 
 CREATE INDEX 
