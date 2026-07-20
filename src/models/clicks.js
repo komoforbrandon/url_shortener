@@ -1,5 +1,5 @@
 import { db } from "../db.js";
-
+import QueryStream from "pg-query-stream";
 export async function create({ link_id, referrer, user_agent }) {
   const { rows } = await db.query(
     `INSERT INTO clicks (link_id, referrer, user_agent)
@@ -41,6 +41,28 @@ export async function findAllByLinkId(link_id) {
   return rows;
 }
 
+export async function getStreamByLinkId(link_id) {
+  const client = await db.connect();
+  const queryText = `
+  SELECT clicked_at, referrer, user_agent
+     FROM clicks
+     WHERE link_id = $1
+     ORDER BY id DESC;
+  `
+  const values = [link_id]
+
+  const queryStream = new QueryStream(queryText, values, {batchSize: 1000});
+
+  const stream = client.query(queryStream)
+
+  stream.on('end', ()=> client.release());
+  stream.on('error', ()=> (err) =>{
+    client.release();
+    console.error('Stream error:', err)
+  });
+
+  return stream;
+}
 export async function deleteByLinkId(link_id) {
   await db.query(
     `DELETE FROM clicks

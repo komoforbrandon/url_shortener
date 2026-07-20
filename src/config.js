@@ -21,7 +21,7 @@ const result = schema.safeParse(process.env);
 if (!result.success) {
   console.log("\nInvalid configuration. Check your .env file:\n");
   for (let issue of result.error.issues) {
-    console.error(`- ${issue.pathh.join(",")}: ${issue.message}`);
+    console.error(`- ${issue.path.join(",")}: ${issue.message}`);
   }
   console.error("");
   process.exit(1);

@@ -36,9 +36,13 @@ export function createApp() {
 
   app.use((err, _req, res, _next) => {
     const status = err.statusCode ?? 500;
-    const message = err.message ?? "Internal Server Error";
-    const detail = err.details ?? undefined;
+    const message = status >= 500 ? "Internal Server Error" : (err.message ?? "Internal Server Error");
+    const detail = status >= 500 ? undefined : (err.message ?? undefined)
 
+    if (status > 500) {
+      console.error("System Error Tracker:", err)
+    }
+    
     res.status(status).json({ error: message, ...(detail ? { detail } : {}) });
   });
 

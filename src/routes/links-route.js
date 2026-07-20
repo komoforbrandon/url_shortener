@@ -1,6 +1,6 @@
 import { Router } from "express";
-import * as linkController from "../controller/links-controller.js";
-import * as clickController from "../controller/click-controller.js";
+import * as linkController from "../controllers/links-controller.js";
+import * as clickController from "../controllers/click-controller.js";
 
 const router = Router();
 
