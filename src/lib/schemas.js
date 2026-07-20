@@ -29,6 +29,6 @@ export const createLinkSchema = z
 export const codeParamSchema = codeSchema;
 
 export const clickLogQuerySchema = z.object({
-  after: z.string().trim().optional(),
+  after: z.coerce.number().int().positive().optional(),
   limit: z.coerce.number().int().min(1).max(100).default(20),
 });

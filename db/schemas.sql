@@ -17,8 +17,11 @@ CREATE TABLE
         user_agent TEXT
     );
 
-CREATE INDEX idx_links_code ON links (code);
+CREATE INDEX 
+    IF NOT EXISTS idx_links_code ON links (code);
 
-CREATE INDEX idx_clicks_link_time ON clicks (link_id, clicked_at DESC);
+CREATE INDEX 
+    IF NOT EXISTS idx_clicks_link_time ON clicks (link_id, clicked_at DESC);
 
-CREATE INDEX idx_links_expiry ON links (expires_at);
+CREATE INDEX 
+    IF NOT EXISTS idx_links_expiry ON links (expires_at);
